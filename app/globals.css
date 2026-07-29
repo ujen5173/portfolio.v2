@@ -1,0 +1,532 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   THEME BRIDGE — expose tokens to Tailwind utilities
+   ========================================================================== */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+
+  /* Semantic surface + ink scale (theme-aware, replaces hardcoded slate/stone) */
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-4: var(--ink-4);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Fluid display scale — one source of truth for the big statements */
+  --text-display-sm: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  --text-display-md: clamp(1.85rem, 1.1rem + 3.2vw, 3.5rem);
+  --text-display-lg: clamp(2rem, 0.9rem + 4.6vw, 4.75rem);
+  --text-display-xl: clamp(1.95rem, 0.3rem + 6.2vw, 6.25rem);
+
+  /* Motion tokens */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-pop-in: pop-in 0.34s var(--ease-out-expo) both;
+  --animate-marquee: marquee 50s linear infinite;
+  --animate-pulse-ring: pulse-ring 2.6s var(--ease-out-quint) infinite;
+}
+
+/* ==========================================================================
+   TOKENS — dark is the primary, authored theme
+   ========================================================================== */
+
+:root,
+.dark {
+  color-scheme: dark;
+
+  /* Near-neutral charcoal. A trace of blue keeps it from looking muddy. */
+  --background: oklch(0.168 0.006 265);
+  --foreground: oklch(0.95 0.003 265);
+
+  /* Ink scale: 1 = brightest headline ink, 4 = faintest metadata */
+  --ink: oklch(0.97 0.002 265);
+  --ink-2: oklch(0.84 0.004 265);
+  --ink-3: oklch(0.66 0.006 265);
+  --ink-4: oklch(0.52 0.007 265);
+
+  --surface: oklch(0.205 0.006 265);
+  --surface-2: oklch(0.235 0.007 265);
+  --hairline: oklch(1 0 0 / 10%);
+  --hairline-strong: oklch(1 0 0 / 20%);
+
+  --card: oklch(0.205 0.006 265);
+  --card-foreground: oklch(0.95 0.003 265);
+  --popover: oklch(0.21 0.006 265);
+  --popover-foreground: oklch(0.95 0.003 265);
+
+  /* Single accent. Warm rust, desaturated enough to sit next to grey. */
+  --primary: oklch(0.68 0.15 38);
+  --primary-foreground: oklch(0.16 0.01 265);
+  --secondary: oklch(0.25 0.006 265);
+  --secondary-foreground: oklch(0.95 0.003 265);
+  --muted: oklch(0.23 0.005 265);
+  --muted-foreground: oklch(0.64 0.006 265);
+  --accent: oklch(0.27 0.04 38);
+  --accent-foreground: oklch(0.95 0.003 265);
+  --destructive: oklch(0.66 0.16 25);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.68 0.15 38);
+
+  /* Data colours only — never decoration. Muted so charts stay legible. */
+  --chart-1: oklch(0.68 0.15 38);
+  --chart-2: oklch(0.66 0.09 235);
+  --chart-3: oklch(0.66 0.09 300);
+  --chart-4: oklch(0.74 0.1 95);
+  --chart-5: oklch(0.68 0.09 165);
+
+  --radius: 0.5rem;
+
+  --sidebar: oklch(0.15 0.006 265);
+  --sidebar-foreground: oklch(0.95 0.003 265);
+  --sidebar-primary: oklch(0.68 0.15 38);
+  --sidebar-primary-foreground: oklch(0.16 0.01 265);
+  --sidebar-accent: oklch(0.27 0.04 38);
+  --sidebar-accent-foreground: oklch(0.95 0.003 265);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.68 0.15 38);
+
+  --selection: oklch(0.68 0.15 38 / 26%);
+  /* Background art — structural, not decorative. */
+  --rule: oklch(1 0 0 / 3.2%);
+  --tint: oklch(0.215 0.008 265 / 70%);
+  --grain-opacity: 0.04;
+}
+
+/* Light theme — warm paper stock, not screen white */
+.light {
+  color-scheme: light;
+
+  --background: oklch(0.965 0.004 85);
+  --foreground: oklch(0.21 0.008 265);
+
+  --ink: oklch(0.19 0.008 265);
+  --ink-2: oklch(0.34 0.007 265);
+  --ink-3: oklch(0.48 0.006 265);
+  --ink-4: oklch(0.6 0.006 265);
+
+  --surface: oklch(0.995 0.002 85);
+  --surface-2: oklch(1 0 0);
+  --hairline: oklch(0.21 0.008 265 / 13%);
+  --hairline-strong: oklch(0.21 0.008 265 / 26%);
+
+  --card: oklch(0.995 0.002 85);
+  --card-foreground: oklch(0.21 0.008 265);
+  --popover: oklch(0.995 0.002 85);
+  --popover-foreground: oklch(0.21 0.008 265);
+
+  --primary: oklch(0.52 0.16 38);
+  --primary-foreground: oklch(0.99 0.005 85);
+  --secondary: oklch(0.94 0.005 85);
+  --secondary-foreground: oklch(0.24 0.008 265);
+  --muted: oklch(0.94 0.005 85);
+  --muted-foreground: oklch(0.5 0.007 265);
+  --accent: oklch(0.93 0.03 38);
+  --accent-foreground: oklch(0.24 0.008 265);
+  --destructive: oklch(0.53 0.19 25);
+
+  --border: oklch(0.21 0.008 265 / 14%);
+  --input: oklch(0.21 0.008 265 / 18%);
+  --ring: oklch(0.52 0.16 38);
+
+  --chart-1: oklch(0.52 0.16 38);
+  --chart-2: oklch(0.5 0.11 235);
+  --chart-3: oklch(0.5 0.12 300);
+  --chart-4: oklch(0.58 0.1 95);
+  --chart-5: oklch(0.5 0.09 165);
+
+  --sidebar: oklch(0.955 0.004 85);
+  --sidebar-foreground: oklch(0.21 0.008 265);
+  --sidebar-primary: oklch(0.52 0.16 38);
+  --sidebar-primary-foreground: oklch(0.99 0.005 85);
+  --sidebar-accent: oklch(0.93 0.03 38);
+  --sidebar-accent-foreground: oklch(0.24 0.008 265);
+  --sidebar-border: oklch(0.21 0.008 265 / 14%);
+  --sidebar-ring: oklch(0.52 0.16 38);
+
+  --selection: oklch(0.52 0.16 38 / 18%);
+  --rule: oklch(0.21 0.008 265 / 5.5%);
+  --tint: oklch(0.925 0.005 85 / 80%);
+  --grain-opacity: 0.028;
+}
+
+/* ==========================================================================
+   BASE
+   ========================================================================== */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition:
+      background-color 0.35s var(--ease-out-quint),
+      color 0.35s var(--ease-out-quint);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--selection);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklch, var(--foreground) 16%, transparent);
+    border-radius: 99px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+/* ==========================================================================
+   UTILITIES — deliberately few. Structure comes from type and hairlines.
+   ========================================================================== */
+
+@layer utilities {
+  .container-page {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 1280px;
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-page {
+      padding-inline: 3rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container-page {
+      padding-inline: 4rem;
+    }
+  }
+
+  /* Narrower measure for long-form reading. */
+  .container-prose {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 46rem;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* ---------- Scroll reveal — one gentle motion, used everywhere ---------- */
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.7s var(--ease-out-expo),
+      transform 0.7s var(--ease-out-expo);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Per-line headline reveal, masked so lines rise into place. */
+  .line-reveal > span {
+    display: block;
+    overflow: hidden;
+  }
+
+  .line-reveal > span > span {
+    display: block;
+    transform: translateY(105%);
+    transition: transform 0.9s var(--ease-out-expo);
+    transition-delay: calc(var(--line-index, 0) * 90ms + var(--line-base, 0ms));
+  }
+
+  .line-reveal.is-visible > span > span {
+    transform: translateY(0);
+  }
+
+  /* ---------- Links ---------- */
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.4s var(--ease-out-expo);
+  }
+
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Surfaces ---------- */
+
+  /* Ruled grid — architectural structure, no colour. */
+  .rule-grid {
+    background-image:
+      linear-gradient(to right, var(--rule) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+    background-size: 96px 96px;
+  }
+
+  /* Fine grain, just enough to stop large flats looking synthetic. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: var(--grain-opacity);
+    pointer-events: none;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+  }
+
+  /* Cursor-tracked spotlight: components publish --mx/--my on hover. */
+  .spotlight {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0;
+    border-radius: inherit;
+    transition: opacity 0.5s var(--ease-out-quint);
+    background: radial-gradient(
+      440px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklch, var(--primary) 9%, transparent),
+      transparent 65%
+    );
+  }
+
+  .spotlight:hover::before,
+  .spotlight:focus-within::before {
+    opacity: 1;
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      var(--hairline-strong) 0%,
+      transparent 100%
+    );
+  }
+
+  /* ---------- Pending work — a slot that exists but isn't filled in ------- */
+
+  /* Fine diagonal hatch. Reads as "reserved", not as decoration. */
+  .hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      color-mix(in oklch, var(--foreground) 5%, transparent) 0 1px,
+      transparent 1px 7px
+    );
+  }
+
+  /* Stand-in for a line of prose that hasn't been written. */
+  .redact {
+    background: color-mix(in oklch, var(--foreground) 10%, transparent);
+    border-radius: 3px;
+  }
+
+  /* One slow pass of light — "being worked on", not "loading". */
+  .sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      100deg,
+      transparent 38%,
+      color-mix(in oklch, var(--primary) 8%, transparent) 50%,
+      transparent 62%
+    );
+    transform: translateX(-100%);
+    animation: sheen 6s var(--ease-out-quint) infinite;
+  }
+
+  /* Equaliser bars on the now-playing card. */
+  .eq-bar {
+    transform-origin: bottom;
+    animation: eq 900ms var(--ease-out-quint) infinite alternate;
+  }
+
+  .animate-marquee {
+    animation: var(--animate-marquee);
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 6%,
+      black 94%,
+      transparent
+    );
+  }
+
+  /* ---------- Reduced motion ---------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    .reveal,
+    .line-reveal > span > span {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes eq {
+  from {
+    transform: scaleY(0.3);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-100%);
+  }
+  55%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  70%,
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
