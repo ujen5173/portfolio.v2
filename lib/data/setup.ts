@@ -1,24 +1,24 @@
 /** The things I open every day. */
 export const dailyDrivers = [
   {
-    name: "VS Code",
+    name: "VS Code | Zed",
     role: "Editor",
-    note: "Where almost everything gets written. Tuned once, then left alone.",
-  },
-  {
-    name: "Zed",
-    role: "Editor",
-    note: "For when I want something that opens instantly and gets out of the way.",
-  },
-  {
-    name: "Figma",
-    role: "Design",
-    note: "Layouts get decided here before a single line of JSX exists.",
+    note: "Where almost everything gets written. Tuned once, then left alone. Love Zed performance and VS Code ecosystem",
   },
   {
     name: "Obsidian",
-    role: "Notes",
-    note: "Schema sketches, half-formed ideas, and the reading list I never finish.",
+    role: "Idea Vault",
+    note: "Half-formed ideas, tons of unfulfilled projects, and a project list I never finish—or even start. Basically, a project graveyard and an idea black hole that somehow keeps getting bigger.",
+  },
+  {
+    name: "Claude Code",
+    role: "Coding Partner",
+    note: "Effective Coding partner and brainstromer. Gets boring things done quickly but needs to be reviewed and directed.",
+  },
+  {
+    name: "Chiya (Nepali Tea)",
+    role: "Drive",
+    note: "Preffers tea over coffee. Can't start my day without it.",
   },
   {
     name: "Git + GitHub",
@@ -51,9 +51,7 @@ export const extensions = [
     name: "Tailwind CSS IntelliSense",
     purpose: "Class autocomplete, including inside cn()",
   },
-  { name: "ESLint", purpose: "Catches the mistakes types can't" },
   { name: "Prettier", purpose: "Formatting stops being a discussion" },
-  { name: "Pretty TS Errors", purpose: "Makes TypeScript errors readable" },
   { name: "GitLens", purpose: "Blame and history without leaving the file" },
   { name: "ES7 React Snippets", purpose: "Boilerplate I'd rather not retype" },
   { name: "Auto Import", purpose: "Imports resolve themselves" },

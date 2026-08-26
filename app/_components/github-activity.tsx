@@ -81,7 +81,7 @@ const GitHubActivity = async () => {
               <SpotlightCard className="panel rounded-2xl p-7 md:p-8">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="text-lg font-medium text-ink">
-                    What I reach for
+                    My current go-to stack:
                   </h3>
                   <span className="font-mono text-xs text-ink-4 tabular">
                     {summary.totalRepos} repos
@@ -125,23 +125,6 @@ const GitHubActivity = async () => {
                     next hourly revalidation.
                   </p>
                 )}
-
-                <dl className="mt-8 grid grid-cols-3 gap-4 border-t border-hairline pt-6">
-                  {[
-                    { label: "Stars", value: summary.totalStars },
-                    { label: "Forks", value: summary.totalForks },
-                    { label: "Since", value: summary.firstRepoYear ?? "—" },
-                  ].map((item) => (
-                    <div key={item.label}>
-                      <dd className="font-display text-2xl font-medium tracking-[-0.02em] text-ink tabular">
-                        {item.value}
-                      </dd>
-                      <dt className="mt-1 font-mono text-[10px] tracking-wider text-ink-4 uppercase">
-                        {item.label}
-                      </dt>
-                    </div>
-                  ))}
-                </dl>
               </SpotlightCard>
 
               <NowPlaying className="flex-1" />
@@ -199,14 +182,16 @@ const GitHubActivity = async () => {
                 </p>
               )}
 
-              <a
-                href="https://github.com/ujen5173"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="link-underline mt-6 inline-block shrink-0 border-t border-hairline pt-6 font-mono text-xs text-ink-4 hover:text-ink-2"
-              >
-                Follow along on GitHub ↗
-              </a>
+              <div className="border-t border-hairline py-2 mt-4">
+                <a
+                  href="https://github.com/ujen5173"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-fit link-underline mt-6 inline-block shrink-0 font-mono text-xs text-ink-4 hover:text-ink-2"
+                >
+                  Follow along on GitHub ↗
+                </a>
+              </div>
             </SpotlightCard>
           </Reveal>
         </div>

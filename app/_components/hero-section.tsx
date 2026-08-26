@@ -7,8 +7,8 @@ import GithubCard from "./github-card";
 import LocalTime from "./local-time";
 
 const FACTS = [
-  { label: "Based", value: "Kathmandu, Nepal", clock: true },
-  { label: "Focus", value: "Multi-tenant SaaS, APIs, design systems" },
+  { label: "Based", value: "Nepal - Mars", clock: true },
+  { label: "Focus", value: "Product Design, System Design, Core build" },
   { label: "Languages", value: "Nepali (native), English (professional)" },
   { label: "Open for", value: "Engineering roles & freelance" },
 ];
