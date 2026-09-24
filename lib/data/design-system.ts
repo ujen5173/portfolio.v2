@@ -127,11 +127,3 @@ export const revisions = [
       "The first headline size was 152px at desktop width. It looked impressive in isolation and pushed everything useful below the fold.",
   },
 ];
-
-/** People who shaped this. */
-export const credit = {
-  name: "Ashwesha Shrestha",
-  handle: "@ashweshashrestha",
-  url: "https://github.com/ashweshashrestha",
-  body: "Ashwesha shaped most of the visual direction here and talked me out of several ideas that would have made the page worse. The four-step text ramp, the decision to drop the coloured background, and the current type scale all came out of her feedback. She also built parts of the site with me. She is my partner, which means the design reviews were free and unusually honest.",
-};

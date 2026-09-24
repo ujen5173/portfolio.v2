@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: "#approach", label: "Approach" },
   { href: "#experience", label: "Experience" },
   { href: "#contact", label: "Contact" },
+  { href: "/resume.pdf", label: "Resume" },
 ];
 
 const Header = () => {
@@ -75,7 +76,11 @@ const Header = () => {
               <li key={link.href}>
                 <Link
                   href={navHref(link.href)}
-                  className="link-underline text-sm text-ink-3 hover:text-ink"
+                  className={cn(
+                    "link-underline text-sm text-ink-3 hover:text-ink",
+                    link.href.includes("resume") &&
+                      "text-primary underline underline-offset-2",
+                  )}
                 >
                   {link.label}
                 </Link>

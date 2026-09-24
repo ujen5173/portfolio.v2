@@ -1,5 +1,5 @@
 import { CommandPaletteProvider } from "@/components/command-palette";
-import { THEME_SCRIPT, ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import { profile } from "@/lib/data/profile";
 import { bricolage, geistMono, geistSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -102,7 +102,7 @@ export default function RootLayout({
     >
       <head>
         {/* Resolve the theme before first paint to avoid a flash. */}
-        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
+        {/*<script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />*/}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}

@@ -3,6 +3,7 @@ import Reveal from "@/components/reveal";
 import { profile } from "@/lib/data/profile";
 import { getGitHubUser } from "@/lib/github";
 import Link from "next/link";
+import React from "react";
 import GithubCard from "./github-card";
 import LocalTime from "./local-time";
 
@@ -35,11 +36,11 @@ const HeroSection = async () => {
           // Line breaks are authored, not left to the browser — each line is
           // short enough to survive a 360px viewport without re-wrapping.
           lines={[
-            <>I design and build</>,
-            <>web products,</>,
-            <>
+            <React.Fragment key="1a">I design and build</React.Fragment>,
+            <React.Fragment key="2b">web products,</React.Fragment>,
+            <React.Fragment key="3c">
               <span className="text-ink-4">from the</span> ground up.
-            </>,
+            </React.Fragment>,
           ]}
         />
 

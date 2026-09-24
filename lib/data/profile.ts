@@ -117,7 +117,7 @@ export const beyondCode = [
   },
   {
     title: "Spending time with loved ones.",
-    body: "My favourite part of the day is to stop about tech and spend quality time with my loved ones and my girlfriend.",
+    body: "My favourite part of the day is to stop about tech and spend quality time with my loved ones and have alone time to escape from reality.",
   },
   {
     title: "Robotics",

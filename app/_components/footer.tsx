@@ -3,6 +3,7 @@ import LineReveal from "@/components/line-reveal";
 import Reveal from "@/components/reveal";
 import { profile } from "@/lib/data/profile";
 import Link from "next/link";
+import React from "react";
 import BackToTop from "./back-to-top";
 import BookCall from "./book-call";
 import LocalTime from "./local-time";
@@ -19,7 +20,7 @@ const Footer = () => (
       <LineReveal
         as="h2"
         className="mt-8 font-display font-medium text-display-lg text-ink leading-[1.06] tracking-[-0.03em]"
-        lines={[<>Let&apos;s talk.</>]}
+        lines={[<React.Fragment key={"123"}>Let&apos;s talk.</React.Fragment>]}
       />
 
       <div className="gap-x-16 gap-y-16 grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] mt-14">
@@ -118,25 +119,6 @@ const Footer = () => (
         </p>
 
         <BackToTop />
-      </div>
-
-      {/* Design help — its own line, with a rule running out to the edge. */}
-      <div className="flex items-center gap-5 mt-6">
-        <p className="font-mono text-ink-4 text-xs">
-          Designing life and tech with{" "}
-          <a
-            href="https://github.com/ashweshashrestha"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink-3 hover:text-primary link-underline"
-          >
-            Ashwesha Shrestha
-          </a>
-          , who has better taste than me in both.
-        </p>
-
-        {/* Fades out to the right, so it ends without needing a hard stop. */}
-        <span aria-hidden className="hidden sm:block flex-1 hairline" />
       </div>
     </div>
   </footer>
