@@ -4,7 +4,6 @@ import Reveal from "@/components/reveal";
 import {
   accessibilityNotes,
   colourNotes,
-  credit,
   flow,
   inkScale,
   intro,
@@ -267,36 +266,6 @@ export default function DesignPage() {
                 </Reveal>
               ))}
             </dl>
-          </Chapter>
-
-          <Chapter index="08" title="Credit">
-            <Reveal>
-              <div className="max-w-2xl">
-                <p className="text-ink-3 text-base text-pretty leading-relaxed">
-                  {credit.body}
-                </p>
-
-                <a
-                  href={credit.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-baseline gap-3 mt-6"
-                >
-                  <span className="font-medium text-ink group-hover:text-primary text-base transition-colors">
-                    {credit.name}
-                  </span>
-                  <span className="font-mono text-ink-4 text-xs">
-                    {credit.handle}
-                  </span>
-                  <span
-                    aria-hidden
-                    className="text-ink-4 group-hover:text-primary transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 duration-300"
-                  >
-                    ↗
-                  </span>
-                </a>
-              </div>
-            </Reveal>
           </Chapter>
 
           <div className="pt-12 border-hairline border-t">

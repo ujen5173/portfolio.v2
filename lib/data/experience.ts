@@ -32,11 +32,11 @@ export const timeline: TimelineEntry[] = [
   },
   {
     kind: "work",
-    period: "Jul 2026 — Present",
+    period: "Jul 2026 — Sept 2026",
     title: "Full Stack Developer",
     org: "Converge Solutions Pvt Ltd.",
     location: "Sanepa, Lalitpur",
-    current: true,
+    current: false,
     summary:
       "Building and maintaining production features across the stack, and steadily reshaping the frontend architecture underneath them.",
     highlights: [
